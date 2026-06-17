@@ -1,0 +1,28 @@
+# General settings
+.gitattributes  text eol=lf
+.gitignore      text eol=lf
+*.md            text diff=markdown eol=lf
+
+# Auto detect text files and perform LF normalization
+# @see https://github.com/alexkaratarakis/gitattributes/blob/master/CSharp.gitattributes
+*          text=auto eol=lf
+
+*.cs       text diff=csharp eol=lf
+*.razor    text diff=csharp eol=lf
+*.cshtml   text diff=html eol=lf
+*.csx      text diff=csharp eol=lf
+*.sln      text eol=crlf
+*.csproj   text eol=crlf
+
+# Unix line endings for other files
+*.css       text eol=lf
+*.html       text eol=lf
+
+# DatabaseMgmt/scripts/create.sh eol=lf
+# DatabaseMgmt/scripts/remove.sh eol=lf
+*.sql      text eol=lf
+
+# Windows file endings for specific files
+*.ps1    text eol=crlf
+*.bat    text eol=crlf
+
