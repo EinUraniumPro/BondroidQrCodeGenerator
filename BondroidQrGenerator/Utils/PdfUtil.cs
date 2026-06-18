@@ -36,6 +36,7 @@ public sealed class PdfUtil : IPdfUtil
         int itemsPerPage = columns * rowsPerPage;
 
         SKCanvas? canvas = null;
+        int renderedCount = 0;
 
         for (int i = 0; i < qrBitmaps.Count; i++)
         {
@@ -45,7 +46,7 @@ public sealed class PdfUtil : IPdfUtil
                 continue;
             }
 
-            if (i % itemsPerPage == 0)
+            if (renderedCount % itemsPerPage == 0)
             {
                 if (canvas is not null)
                 {
@@ -56,7 +57,7 @@ public sealed class PdfUtil : IPdfUtil
                 canvas.Clear(SKColors.White);
             }
 
-            int indexOnPage = i % itemsPerPage;
+            int indexOnPage = renderedCount % itemsPerPage;
             int row = indexOnPage / columns;
             int col = indexOnPage % columns;
 
@@ -71,6 +72,7 @@ public sealed class PdfUtil : IPdfUtil
             );
 
             DrawBitmapFitCentered(canvas!, qrBitmap, targetRect);
+            renderedCount++;
         }
 
         if (canvas is not null)
