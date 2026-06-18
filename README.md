@@ -20,7 +20,7 @@ A cross-platform .NET CLI tool that reads a Bondroid-exported CSV file and gener
 ### Clone the repository
 
 ```bash
-git clone https://github.com/EinUraniumPro/bondroid-qr-generator.git
+git clone https://github.com/EinUraniumPro/BondroidQrCodeGenerator.git
 cd bondroid-qr-generator
 ```
 
