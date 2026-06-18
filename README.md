@@ -117,6 +117,21 @@ BondroidQrGenerator/
 | [System.CommandLine](https://github.com/dotnet/command-line-api)                                                          | CLI argument parsing                       |
 | [Microsoft.Extensions.DependencyInjection](https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection) | Dependency injection                       |
 
+## Distribution Notes
+
+### Windows: `libSkiaSharp.dll` as a Separate File
+
+When publishing with `PublishSingleFile`, a `libSkiaSharp.dll` file appears alongside the `.exe`. This is not a bug - it is a technical limitation:
+
+`PublishSingleFile` can only bundle **managed .NET assemblies** into the executable. SkiaSharp's graphics engine is implemented in native C/C++ code. This native library must be loaded by the Windows loader (`LoadLibrary`) directly from the file system and cannot be embedded inside the executable.
+
+```
+BondroidQrGenerator.exe -> all managed .NET assemblies bundled
+libSkiaSharp.dll -> native C++ library, stays separate
+```
+
+> The same behaviour applies on Linux (`libSkiaSharp.so`) and macOS (`libSkiaSharp.dylib`).
+
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
