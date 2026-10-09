@@ -1,5 +1,4 @@
-﻿using BondroidQRHelper.Model;
-using SkiaSharp;
+﻿using SkiaSharp;
 
 namespace BondroidQRHelper.Interfaces;
 

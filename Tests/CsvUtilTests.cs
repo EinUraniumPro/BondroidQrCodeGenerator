@@ -141,21 +141,21 @@ public class CsvUtilTests
     }
 
     [Test]
-    public void GetTablesFromBondroidCsv_ShouldThrow_WhenFileDoesNotExist()
+    public async Task GetTablesFromBondroidCsv_ShouldThrow_WhenFileDoesNotExist()
     {
         // Arrange
         ICsvUtil csvUtil = new CsvUtil();
         string missingPath = Path.Combine(Path.GetTempPath(), $"{Guid.NewGuid()}.csv");
 
         // Act + Assert
-        Assert.ThrowsAsync<FileNotFoundException>(async () =>
+        await Assert.ThrowsAsync<FileNotFoundException>(async () =>
         {
             await ToListAsync(csvUtil.GetTablesFromBondroidCsv(missingPath));
         });
     }
 
     [Test]
-    public void GetTablesFromBondroidCsv_ShouldBeLazy_AndNotThrowBeforeEnumeration()
+    public async Task GetTablesFromBondroidCsv_ShouldBeLazy_AndNotThrowBeforeEnumeration()
     {
         // Arrange
         ICsvUtil csvUtil = new CsvUtil();
@@ -167,14 +167,14 @@ public class CsvUtilTests
         // Assert
         Assert.That(enumerable, Is.Not.Null);
 
-        Assert.ThrowsAsync<FileNotFoundException>(async () =>
+        await Assert.ThrowsAsync<FileNotFoundException>(async () =>
         {
             await ToListAsync(enumerable);
         });
     }
 
     [Test]
-    public void GetTablesFromBondroidCsv_ShouldThrow_WhenCancellationTokenIsAlreadyCancelled()
+    public async Task GetTablesFromBondroidCsv_ShouldThrow_WhenCancellationTokenIsAlreadyCancelled()
     {
         // Arrange
         ICsvUtil csvUtil = new CsvUtil();
@@ -187,10 +187,10 @@ public class CsvUtilTests
         );
 
         using CancellationTokenSource cts = new();
-        cts.Cancel();
+        await cts.CancelAsync();
 
         // Act + Assert
-        Assert.ThrowsAsync<OperationCanceledException>(async () =>
+        await Assert.ThrowsAsync<OperationCanceledException>(async () =>
         {
             await ToListAsync(
                 csvUtil.GetTablesFromBondroidCsv(csvPath, cts.Token),

@@ -1,7 +1,6 @@
 using BondroidQRHelper.Interfaces;
 using QRCoder;
 using SkiaSharp;
-using BondroidQRHelper.Model;
 
 namespace BondroidQRHelper.Utils;
 
@@ -30,7 +29,7 @@ public sealed class QrCodeUtil : IQrCodeUtil
         return qrBitmap;
     }
 
-    private SKBitmap RenderQrCode(QRCodeData qrCodeData, int pixelsPerModule)
+    private static SKBitmap RenderQrCode(QRCodeData qrCodeData, int pixelsPerModule)
     {
         int moduleCount = qrCodeData.ModuleMatrix.Count;
 

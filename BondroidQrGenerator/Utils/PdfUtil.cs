@@ -83,7 +83,7 @@ public sealed class PdfUtil : IPdfUtil
         document.Close();
     }
 
-    private void DrawBitmapFitCentered(
+    private static void DrawBitmapFitCentered(
         SKCanvas canvas,
         SKBitmap bitmap,
         SKRect targetRect)

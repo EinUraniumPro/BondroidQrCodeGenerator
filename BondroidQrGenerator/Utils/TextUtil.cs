@@ -1,6 +1,5 @@
 using BondroidQRHelper.Interfaces;
 using SkiaSharp;
-using BondroidQRHelper.Model;
 
 namespace BondroidQRHelper.Utils;
 
@@ -31,6 +30,8 @@ public sealed class TextUtil : ITextUtil
         using SKPaint textPaint = new();
         textPaint.Color = SKColors.Black;
         textPaint.IsAntialias = true;
+
+        SKTextAlign textAlign = SKTextAlign.Center;
 
         font.GetFontMetrics(out SKFontMetrics metrics);
 
@@ -63,7 +64,7 @@ public sealed class TextUtil : ITextUtil
 
             float x = (bitmapWidth - bounds.Width) / 2f - bounds.Left;
 
-            canvas.DrawText(line, x, y, font, textPaint);
+            canvas.DrawText(line, x, y, textAlign, font, textPaint);
 
             y += lineHeight + lineSpacing;
         }

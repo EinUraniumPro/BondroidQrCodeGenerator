@@ -1,4 +1,3 @@
-using System.Runtime.CompilerServices;
 using BondroidQRHelper.Model;
 
 namespace BondroidQRHelper.Interfaces;
