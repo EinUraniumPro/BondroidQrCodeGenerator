@@ -77,7 +77,7 @@ public sealed class QrCodeUtil : IQrCodeUtil
     /// </summary>
     /// <param name="bitmap">The bitmap to encode and save.</param>
     /// <param name="outputPath">The destination file path including the file name and extension.</param>
-    public void SavePng(SKBitmap bitmap, string outputPath)
+    public static void SavePng(SKBitmap bitmap, string outputPath)
     {
         using SKImage image = SKImage.FromBitmap(bitmap);
         using SKData data = image.Encode(SKEncodedImageFormat.Png, 100);
